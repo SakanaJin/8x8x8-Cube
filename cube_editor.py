@@ -44,6 +44,16 @@ def renderGrid():
                 button_dict[f"button_{row}_{col}"].configure(text="off")
                 button_dict[f"button_{row}_{col}"].configure(fg_color="transparent")
 
+def fill():
+    global voxelPos
+    voxelPos = np.ones((8,8,8))
+    renderGrid()
+
+def clear():
+    global voxelPos
+    voxelPos = np.zeros((8,8,8))
+    renderGrid()
+
 def create():
     top = "#include <SPI.h>\n\n"
 
@@ -105,6 +115,13 @@ def main():
 
     create_button = ctk.CTkButton(root, text="Create", width=100, height=40, command=lambda: create())
     create_button.grid(row=11, column=7, padx=5, pady=5)
+
+    fill_cube = ctk.CTkButton(root, text="Fill", width=100, height=40, command=lambda: fill())
+    fill_cube.grid(row=11, column=0, padx=5, pady=5)
+
+    clear_cube = ctk.CTkButton(root, text="Clear", width=100, height=40, command=lambda: clear())
+    clear_cube.grid(row=11, column=1, padx=5, pady=5)
+
 
 
 
