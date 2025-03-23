@@ -49,7 +49,7 @@ def create():
 
     listFromNp = voxelPos.tolist()
     list_str = str(listFromNp).replace('[', '{').replace(']', '}').replace('.0', '')
-    voxelString = f"uint voxelPosition[8][8][8] = {list_str};\n\n"
+    voxelString = f"int voxelPositions[8][8][8] = {list_str};\n\n"
 
     file = open("./template/template.ino", "r")
     template = file.read()
