@@ -7,7 +7,7 @@ void setup() {
     for(uint8_t j = 0; j < 8; j++){
       for(uint8_t k = 0; k < 8; k++){
         if(voxelPositions[i][j][k] == 1){
-          setVoxel(k, i, j)
+          setVoxel(k, i, j);
         }
       }
     }
