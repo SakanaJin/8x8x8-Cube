@@ -1,4 +1,4 @@
-import customtkinter
+import customtkinter as ctk
 import numpy as np
 
 BLUE = "#1f6aa5"
@@ -8,10 +8,9 @@ voxelPos = np.zeros((8, 8, 8))
 
 button_dict = {}
 
-customtkinter.set_appearance_mode("dark")
-customtkinter.set_appearance_mode("blue")
+ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("blue")
 
-import customtkinter as ctk
 
 def on_button_click(row, col):
     if button_dict[f"button_{row}_{col}"].cget("text") == "off":
