@@ -12,7 +12,7 @@ button_dict = {}
 ctk.set_appearance_mode("dark")
 ctk.set_appearance_mode("blue")
 
-
+#MIRROR COLS {1,1,1,1,0,0,0,0} -> {0,0,0,0,1,1,1,1} 
 
 def on_button_click(row, col):
     if button_dict[f"button_{row}_{col}"].cget("text") == "off":
