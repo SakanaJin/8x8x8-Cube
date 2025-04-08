@@ -1,5 +1,7 @@
 import customtkinter as ctk
+from customtkinter import filedialog
 import numpy as np
+from PIL import Image, ImageTk
 
 BLUE = "#1f6aa5"
 
@@ -10,6 +12,7 @@ button_dict = {}
 
 ctk.set_appearance_mode("dark")
 ctk.set_appearance_mode("blue")
+
 
 
 def on_button_click(row, col):
@@ -68,7 +71,38 @@ def create():
     file.write(top + voxelString + template)
     file.close()
 
+def ImageGet():
+    filePath = filedialog.askopenfilename( 
+        title="Select an image file",
+        filetypes=[("Image file", "*.jpg *png")]
+    )
 
+    if filePath:
+        global voxelPos
+        img = Image.open(filePath).convert("L")
+        img = img.resize((8,8))
+        imgData = np.array(img)
+        a  = (imgData/255.0 * 7).astype(int)
+        voxelPos = np.zeros((8,8,8))
+
+        for layer in range(8):
+            for row in range(8):
+                for col in range(8):
+                    if a[7-layer][col] < 5:
+                        voxelPos[layer][7-row][col] = 1
+
+        '''
+        for row in range(8):
+            for col in range (8):
+                depth = a[row][col]
+                for z in range(depth + 1):
+                    voxelPos[z][7-row][col]=1
+        '''
+       
+        renderGrid()
+        #print(voxelPos)
+
+        #print(filePath)
 
 def main():
 
@@ -121,8 +155,8 @@ def main():
     clear_cube = ctk.CTkButton(root, text="Clear", width=100, height=40, command=lambda: clear())
     clear_cube.grid(row=11, column=1, padx=5, pady=5)
 
-
-
+    import_image = ctk.CTkButton(root, text="Import Image", width = 100, height = 40, command=lambda:ImageGet())
+    import_image.grid(row=12, column = 0, padx=4, pady = 4)
 
     root.mainloop()
 
