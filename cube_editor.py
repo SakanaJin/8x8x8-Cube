@@ -1,7 +1,6 @@
 import customtkinter as ctk
-from customtkinter import filedialog
 import numpy as np
-from PIL import Image, ImageTk
+from PIL import Image
 
 BLUE = "#1f6aa5"
 
@@ -72,7 +71,7 @@ def create():
     file.close()
 
 def ImageGet():
-    filePath = filedialog.askopenfilename( 
+    filePath = ctk.filedialog.askopenfilename( 
         title="Select an image file",
         filetypes=[("Image file", "*.jpg *png")]
     )
@@ -82,9 +81,12 @@ def ImageGet():
         img = Image.open(filePath).convert("L")
         img = img.resize((8,8))
         imgData = np.array(img)
+        print(imgData)
         a  = (imgData/255.0 * 7).astype(int)
+        print(a)
         voxelPos = np.zeros((8,8,8))
 
+        
         for layer in range(8):
             for row in range(8):
                 for col in range(8):
@@ -100,9 +102,6 @@ def ImageGet():
         '''
        
         renderGrid()
-        #print(voxelPos)
-
-        #print(filePath)
 
 def main():
 
