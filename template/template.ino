@@ -13,6 +13,9 @@ void setup() {
     }
   }
 
+  pinMode(SS, OUTPUT);    //these two lines might be unnecessary idk
+  digitalWrite(SS, HIGH); //delete these first if it doesnt work
+  
   SPI.begin();
   SPI.beginTransaction(SPISettings(8000000, MSBFIRST, SPI_MODE0));
 
@@ -21,6 +24,7 @@ void setup() {
 void loop() {
 
   renderCube();
+  delay(1); //adding a delay might help with some of the visual gliches we've been getting idk how long it should be though.
 
 }
 
