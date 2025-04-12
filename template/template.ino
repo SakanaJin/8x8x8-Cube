@@ -29,7 +29,7 @@ void loop() {
 
 }
 
-void renderCube() {
+void renderCube() { //delay might maybe have to go somewhere in here
   for (uint8_t i = 0; i < 8; i++) {
     digitalWrite(SS, LOW);
     SPI.transfer(0x01 << i);
