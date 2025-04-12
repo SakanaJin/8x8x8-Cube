@@ -10,19 +10,17 @@ voxelPos = np.zeros((8, 8, 8))
 button_dict = {}
 
 ctk.set_appearance_mode("dark")
-ctk.set_appearance_mode("blue")
-
-#MIRROR COLS {1,1,1,1,0,0,0,0} -> {0,0,0,0,1,1,1,1} 
+ctk.set_appearance_mode("blue") 
 
 def on_button_click(row, col):
     if button_dict[f"button_{row}_{col}"].cget("text") == "off":
         button_dict[f"button_{row}_{col}"].configure(text = "on")
         button_dict[f"button_{row}_{col}"].configure(fg_color=BLUE)
-        voxelPos[layerNum][7-row][col] = 1
+        voxelPos[layerNum][7-row][7-col] = 1
     else:
         button_dict[f"button_{row}_{col}"].configure(text = "off")
         button_dict[f"button_{row}_{col}"].configure(fg_color="transparent")
-        voxelPos[layerNum][7-row][col] = 0
+        voxelPos[layerNum][7-row][7-col] = 0
 
 def create_8x8_grid(root):
     for row in range(8):
@@ -81,17 +79,15 @@ def ImageGet():
         img = Image.open(filePath).convert("L")
         img = img.resize((8,8))
         imgData = np.array(img)
-        print(imgData)
         a  = (imgData/255.0 * 7).astype(int)
-        print(a)
         voxelPos = np.zeros((8,8,8))
 
         
         for layer in range(8):
             for row in range(8):
                 for col in range(8):
-                    if a[7-layer][col] < 5:
-                        voxelPos[layer][7-row][col] = 1
+                    if a[7-layer][7-col] < 5:
+                        voxelPos[layer][7-row][7-col] = 1
 
         '''
         for row in range(8):
