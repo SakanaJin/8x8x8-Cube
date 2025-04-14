@@ -12,6 +12,8 @@ button_dict = {}
 ctk.set_appearance_mode("dark")
 ctk.set_appearance_mode("blue") 
 
+
+
 def on_button_click(row, col):
     if button_dict[f"button_{row}_{col}"].cget("text") == "off":
         button_dict[f"button_{row}_{col}"].configure(text = "on")

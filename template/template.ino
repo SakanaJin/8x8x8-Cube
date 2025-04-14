@@ -25,7 +25,7 @@ void setup() {
 void loop() {
 
   renderCube();
-  delay(1); //adding a delay might help with some of the visual gliches we've been getting idk how long it should be though.
+  //delay(1); //adding a delay might help with some of the visual gliches we've been getting idk how long it should be though.
 
 }
 
@@ -37,6 +37,7 @@ void renderCube() { //delay might maybe have to go somewhere in here
       SPI.transfer(cube[i][j]);
     }
     digitalWrite(SS, HIGH);
+    delay(1); //possible delay location
   }
 }
 
