@@ -64,7 +64,7 @@ def create():
     template = file.read()
     file.close()
 
-    file = open("./output/pattern.ino", 'w')
+    file = open("./output/output.ino", 'w')
     file.write(top + voxelString + template)
     file.close()
 
